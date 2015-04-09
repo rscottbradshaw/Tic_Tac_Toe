@@ -1,9 +1,10 @@
 class Board
+  EMPTY_CELL = " "
 
-attr_reader :cells
+  attr_reader :cells
 
   def initialize
-    @cells = [" "," "," "," "," "," "," "," "," "]
+    @cells = Array.new(9, EMPTY_CELL)
   end
 
   def set_cell(i, mark)
@@ -11,19 +12,11 @@ attr_reader :cells
   end
 
   def cell_claimed?(location)
-    if @cells[location] == " "
-      return false
-    else
-      return true
-    end
+    @cells[location] != EMPTY_CELL
   end
 
   def full?
-    if @cells.include?(" ")
-      return false
-    else
-      return true
-    end
+    !@cells.include?(EMPTY_CELL)
   end
 
   def display
